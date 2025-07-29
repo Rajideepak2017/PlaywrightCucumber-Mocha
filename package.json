@@ -1,0 +1,23 @@
+{
+  "name": "cucumber_playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+    "RunallFeatures":"npx cucumber-js \"features/*.feature\"  --format html:Cucumber-report.html",
+    "RunbyTag": "npx cucumber-js \"features/*.feature\" --tags \"@web\" --format html:Cucumber-report.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^12.1.0"
+  }
+  
+}

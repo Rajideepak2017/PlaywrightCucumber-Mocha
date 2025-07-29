@@ -1,0 +1,18 @@
+{
+    "validUser":{
+        "username": "student",
+        "password":"Password123"
+
+    },
+    "invalidUser":{
+        "username": "student1",
+        "password":"Password123 "
+
+    },
+    "PageURL":{
+        "pageURL" :"https://practicetestautomation.com/logged-in-successfully/",
+        "SuccessMSG":"Congratulations"
+    }
+
+}
+
