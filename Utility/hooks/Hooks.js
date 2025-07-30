@@ -3,7 +3,7 @@ const playwright = require('@playwright/test');
 const {POManager}= require('../../PageObjects/POManager')
 
 Before (async function (){
-  console.log("✅ Before hook executing...");
+  console.log(" Before hook executing...");
 
     const browser = await playwright.chromium.launch({headless :false});
     const context= await browser.newContext();

@@ -11,7 +11,8 @@
     },
     "PageURL":{
         "pageURL" :"https://practicetestautomation.com/logged-in-successfully/",
-        "SuccessMSG":"Congratulations"
+        "SuccessMSG":"Congratulations",
+        "PageTitle" : "Test Login | Practice Test Automation"
     }
 
 }
