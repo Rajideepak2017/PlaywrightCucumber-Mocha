@@ -1,6 +1,18 @@
 const {test,expect}=require('@playwright/test');
+
 const {POManager} = require('../PageObjects/POManager');
+
+const { BeforeAll, context } = require('@cucumber/cucumber');
 const dataset = JSON.parse(JSON.stringify(require('../Utility/Config.json')));
+
+test.use({ storageState: 'storage/auth.json' });
+
+test('Access dashboard with saved session', async ({ page }) => {
+  await page.goto('https://practicetestautomation.com/logged-in-successfully/');
+  await expect(page.locator('h1')).toHaveText('Logged In Successfully');
+});
+
+
 
 test('@web first test',async ({page})=>{
    const poManager = new POManager(page);

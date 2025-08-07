@@ -26,16 +26,22 @@ export default defineConfig({
   retries: 1,
   /* Opt out of parallel tests on CI. */
   workers: 2,
+
+  globalSetup: require.resolve('./global-setup.js'),
+  
+
+
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['pwmochawesome', {
-      generateHTML: true,
-      reportDir: 'mochawesome-report',
-      reportTitle: 'Playwright Mochawesome',
-      outputJSON: true,
-      outputFileName: 'result.json'
-    }]
-  ], //'html',
+  reporter: //[
+  //   ['pwmochawesome', {
+  //     generateHTML: true,
+  //     reportDir: 'mochawesome-report',
+  //     reportTitle: 'Playwright Mochawesome',
+  //     outputJSON: true,
+  //     outputFileName: 'result.json'
+  //   }]
+  // ], 
+  'html',
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -45,7 +51,9 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot : 'on',
-    video : 'on'
+    video : 'on',
+    storageState: 'storage/auth.json'
+
   },
 
   /* Configure projects for major browsers */
