@@ -10,7 +10,7 @@ test('Get Users', async ({request})=>{
 
 
 
-test("Create user", async ({ request }) => {
+test.only("Create user", async ({ request }) => {
   const response = await request.post('https://jsonplaceholder.typicode.com/users', {
     headers: {
       'Content-Type': 'application/json',
@@ -25,12 +25,14 @@ test("Create user", async ({ request }) => {
   expect(response.status()).toBe(201);
   expect(response.ok()).toBeTruthy();
   const res = await response.json();
+  const res1 = await response.text();
+  expect(res1).toContain('Rajideepak')
   userid=res.id;
   console.log(userid);
 });
 
-test.only('Update user', async ({ request }) => {
-  const userid = 10;
+test('Update user', async ({ request }) => {
+  
   const response = await request.put('https://jsonplaceholder.typicode.com/users/'+userid, {
     headers: {
       'Content-Type': 'application/json',
@@ -47,7 +49,7 @@ test.only('Update user', async ({ request }) => {
 });
 
 test('Delete user',async ({request})=>{
-    const userid = 10;
+    
      const response = await request.delete(`https://jsonplaceholder.typicode.com/users/${userid}`);
      expect(response.status()).toBe(204);
 })
