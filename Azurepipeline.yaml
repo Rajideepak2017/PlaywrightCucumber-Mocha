@@ -1,0 +1,32 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerImageName: 'playwright-tests'
+
+steps:
+- task: Docker@2
+  displayName: Build Docker Image
+  inputs:
+    command: build
+    Dockerfile: '**/Dockerfile'
+    tags: $(dockerImageName)
+
+- task: Docker@2
+  displayName: Run Playwright Tests in Docker
+  inputs:
+    command: run
+    image: $(dockerImageName)
+    containerName: playwright-container
+    options: '--rm -v $(Build.ArtifactStagingDirectory):/app/artifacts'
+
+# ✅ Publish the HTML report from the mounted volume
+- task: PublishBuildArtifacts@1
+  displayName: Publish HTML Report
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/artifacts/playwright-report'
+    ArtifactName: 'PlaywrightReport'
+    publishLocation: 'Container'
