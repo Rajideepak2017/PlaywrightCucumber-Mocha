@@ -27,7 +27,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 2,
 
-  globalSetup: require.resolve('./global-setup.js'),
+  //globalSetup: require.resolve('./global-setup.js'),
   
 
 

@@ -8,7 +8,7 @@ module.exports = async () => {
   const page = await context.newPage();
   
   await page.goto('https://practicetestautomation.com/practice-test-login/');
-  await page.pause();
+  //await page.pause();
   await page.fill('#username', 'student');
   await page.fill('#password', 'Password123');
 
