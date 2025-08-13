@@ -21,7 +21,7 @@ steps:
     command: run
     image: $(dockerImageName)
     containerName: playwright-container
-    options: '--rm --cpus=4 -v $(Build.ArtifactStagingDirectory):/app/artifacts'
+    options: '--rm --cpus=3 -v $(Build.ArtifactStagingDirectory):/app/artifacts'
 
 # ✅ Publish the HTML report from the mounted volume
 - task: PublishBuildArtifacts@1
