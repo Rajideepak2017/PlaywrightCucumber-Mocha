@@ -25,7 +25,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: 1,
   /* Opt out of parallel tests on CI. */
-  workers: 2,
+  workers: 3,
 
   //globalSetup: require.resolve('./global-setup.js'),
   
