@@ -15,4 +15,4 @@ COPY . .
 RUN npx playwright install
 
 # Run tests and generate HTML report
-CMD ["npx", "playwright", "test", "--reporter=html", "--output=/app/artifacts/playwright-report"]
+CMD ["npx", "playwright", "test", "--reporter=html", "--output=/app/artifacts/playwright-report", "--workers=4"]
