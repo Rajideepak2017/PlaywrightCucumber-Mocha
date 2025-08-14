@@ -2,16 +2,17 @@ const{Before,After,AfterStep,Status} = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 const {POManager}= require('../../PageObjects/POManager')
 
-Before (async function (){
+Before (async function (scenario){
   console.log(" Before hook executing...");
+const tags = scenario.pickle.tags.map(tag => tag.name);
+  let browserType = 'chromium'; // default
 
-    const browser = await playwright.chromium.launch({headless :false});
-    const context= await browser.newContext();
+  if (tags.includes('@firefox')) browserType = 'firefox';
+    const browser = await playwright[browserType].launch({headless :false});
+    const context= await browser.newContext({storageState : 'storage/auth.json'});
     const page = await context.newPage();
     this.page = page;
     this.poManager = new POManager(page);
-    
-
 
 });
 
