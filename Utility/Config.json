@@ -1,4 +1,6 @@
 {
+    "browsers": ["chromium", "firefox"],
+
     "validUser":{
         "username": "student",
         "password":"Password123"
