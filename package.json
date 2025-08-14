@@ -9,7 +9,8 @@
     "MochaHeadedRun" : "npx playwright test --headed",
     "TagRunMocha" : "npx playwright test --grep ' @web'",
     "RunallFeatures": "npx cucumber-js \"features/*.feature\"  --format html:Cucumber-report.html",
-    "RunbyTag": "npx cucumber-js \"features/*.feature\" --tags \"@web\" --format html:Cucumber-report.html"
+    "RunbyTag": "npx cucumber-js \"features/*.feature\" --tags \"@web\" --format html:Cucumber-report.html",
+    "PretestStoragestate": "node generateauth.js && npx cucumber-js \"features/*.feature\" --tags \"@web\" --format html:Cucumber-report.html"
   },
   "keywords": [],
   "author": "",
