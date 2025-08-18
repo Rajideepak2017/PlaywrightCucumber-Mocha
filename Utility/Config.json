@@ -1,4 +1,12 @@
 {
+    
+  "default": "chromium",
+  "tagMapping": {
+    "@firefox": "firefox",
+    "@webkit": "webkit"
+  },
+
+
     "validUser":{
         "username": "student",
         "password":"Password123"
