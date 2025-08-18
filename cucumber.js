@@ -1,9 +1,9 @@
 module.exports = {
   default: [
-    "--require", "Utility/CustomWorld.js",        // ✅ This must come first
+    "--require", "Utility/CustomWorld.js",        
     "--require", "Utility/hooks/hooks.js",
     "--require", "features/stepdefinition/*.js",
-    "features/*.feature",
-   
+    "features/**/*.feature",
+       
   ]
 };
