@@ -1,3 +1,4 @@
+@chromium
 Feature:Login Automation Playwright
 @web
 Scenario: Login function with data inside the scripts

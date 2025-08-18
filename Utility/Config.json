@@ -1,5 +1,11 @@
 {
-    "browsers": ["chromium", "firefox"],
+    
+  "default": "chromium",
+  "tagMapping": {
+    "@firefox": "firefox",
+    "@webkit": "webkit"
+  },
+
 
     "validUser":{
         "username": "student",

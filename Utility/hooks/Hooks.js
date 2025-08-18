@@ -1,25 +1,37 @@
 const{Before,After,AfterStep,Status} = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 const {POManager}= require('../../PageObjects/POManager')
+const fs = require('fs');
+const path = require('path');
 
-Before (async function (scenario){
-  console.log(" Before hook executing...");
-const tags = scenario.pickle.tags.map(tag => tag.name);
-  let browserType = 'chromium'; // default
-
-  if (tags.includes('@firefox')) browserType = 'firefox';
-  
+const configPath = JSON.parse(JSON.stringify(require('../Config.json')));
 
 
-    const browser = await playwright[browserType].launch({headless :false});
-    const context= await browser.newContext({storageState : 'storage/auth.json'});
-    const page = await context.newPage();
-    this.page = page;
-    this.poManager = new POManager(page);
-    
 
 
+Before(async function (scenario) {
+  console.log("Before hook executing...");
+
+  const tags = scenario.pickle.tags.map(tag => tag.name);
+  let browserType = configPath.default;
+
+  for (const tag of tags) {
+    if (configPath.tagMapping[tag]) {
+      browserType = configPath.tagMapping[tag];
+      console.log(`Running ${scenario.pickle.name} on ${browserType}`);
+
+      break;
+    }
+  }
+
+  const browser = await playwright[browserType].launch({headless :false});
+  const context = await browser.newContext({storageState : 'storage/auth.json'});
+  const page = await context.newPage();
+
+  this.page = page;
+  this.poManager = new POManager(page);
 });
+
 
 AfterStep (async function({result}){
    if (result.status === Status.PASSED || result.status === Status.FAILED) {
@@ -33,19 +45,23 @@ AfterStep (async function({result}){
 
 });
 
-After (async function(){
-    if(this.page){
-        await this.page.close();
+After(async function () {
+  if (this.page) {
+    const context = this.page.context();
+    const browser = context.browser();
+
+    // Close page first
+    await this.page.close();
+
+    // Then close context
+    if (context) {
+      await context.close();
     }
 
-    const context = this.page.context();
-  if (context) {
-    await context.close();
-    const browser = context.browser();
+    // Finally close browser
     if (browser) {
       await browser.close();
     }
   }
-
 });
 
